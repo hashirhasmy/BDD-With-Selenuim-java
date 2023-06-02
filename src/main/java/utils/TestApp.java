@@ -10,9 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 public class TestApp {
@@ -46,9 +43,6 @@ public class TestApp {
     }
 
     public void openBrowser() {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
         try {
             switch (selectopenBrowser){
                 case "CHROME":
@@ -86,23 +80,6 @@ public class TestApp {
                 (ExpectedConditions.presenceOfElementLocated(locator));
         return element;
     }
-
-
-    public void setText(By locator, String text) {
-        driver.findElement(locator).sendKeys(text);
-    }
-
-    private String getChromeDriverFilePath() {
-        URL res = getClass().getClassLoader().getResource("chromedriver");
-        File file = null;
-        try {
-            file = Paths.get(res.toURI()).toFile();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return file.getAbsolutePath();
-    }
-
 
     public void takeScreenshot(){
         File screenshot = ((TakesScreenshot) TestApp.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
